@@ -1,0 +1,48 @@
+title = "Artist Details"
+url = "/artists/:slug"
+layout = "static-layout"
+is_hidden = 0
+
+[builderDetails]
+modelClass = "MalcolmLevon\Gigs\Models\Artist"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "slug"
+displayColumn = "artist_name"
+notFoundMessage = "Record not found"
+==
+
+
+==
+{% set record = builderDetails.record %}
+{% set displayColumn = builderDetails.displayColumn %}
+{% set notFoundMessage = builderDetails.notFoundMessage %}
+
+{% if record %}
+    <h1>{{ attribute(record, displayColumn) }}</h1>
+    
+    <p>{{ record.artist_description|raw }}</p>
+
+
+<div class="media-left">
+    <a href="{{ record.url }}">
+        {% if record.featured_images.count > 0 %}
+        <img class="media-object" src="{{ record.featured_images.first.getThumb(100, 'auto') }}" />
+        {% else %}
+        <img class="media-object" src="http://placehold.it/100x100" />
+        {% endif %}
+    </a>
+</div>
+{% else %}
+{{ notFoundMessage }}
+{% endif %}
+
+{% if record %}
+<div>
+    <p>
+        <a href="{{ record.facebook }}"><i class="fa fa-facebook-official" style="font-size:24px;color:cornflowerblue"></i></a>
+        <a href="{{ record.instagram }}"><i class="fa fa-instagram" style="font-size:24px"></i></a>
+        <a href="{{ record.soundcloud }}"><i class="fa fa-soundcloud" style="font-size:24px"></i></a>
+    </p>
+</div>
+
+{% endif %}

@@ -1,0 +1,37 @@
+name: 'Main menu -left'
+items:
+    -
+        title: Artists
+        nesting: ''
+        type: cms-page
+        url: ''
+        code: ''
+        reference: artists
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Gigs
+        type: cms-page
+        code: ''
+        reference: gigs
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: 'All Static Pages'
+        nesting: ''
+        type: all-static-pages
+        url: ''
+        code: ''
+        reference: ''
+        cmsPage: ''
+        replace: '1'
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'

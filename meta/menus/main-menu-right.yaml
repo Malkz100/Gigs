@@ -1,0 +1,24 @@
+name: 'Main menu - right'
+items:
+    -
+        title: Terms
+        nesting: '0'
+        type: static-page
+        url: ''
+        code: ''
+        reference: terms
+        cmsPage: ''
+        replace: '0'
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Contact
+        type: cms-page
+        code: ''
+        reference: contact
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'

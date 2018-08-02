@@ -1,0 +1,38 @@
+title = "Gig Details"
+url = "/gigs/:slug"
+layout = "static-layout"
+is_hidden = 0
+
+[builderDetails]
+modelClass = "MalcolmLevon\Gigs\Models\Gigs"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "slug"
+displayColumn = "gig_title"
+notFoundMessage = "Record not found"
+==
+{% set record = builderDetails.record %}
+{% set displayColumn = builderDetails.displayColumn %}
+{% set notFoundMessage = builderDetails.notFoundMessage %}
+
+{% if record %}
+    <h3>{{ attribute(record, displayColumn) }}</h3>
+    
+    <p>{{ record.gig_description|raw }}</p>
+
+    <p>Artists:</p>
+    <p>
+    {% for artist in record.artists %}
+        <em><a href="/octobercms/artists/{{ artist.slug }}">"{{ artist.artist_name }}"</a></em><br/>
+    {% endfor %}
+    </p>
+
+<p>Venue: <a href="/octobercms/venue/{{ venue.slug }}">{{ record.venue.venue_name }}, {{ record.venue.venue_address1 }}, {{ record.venue.town_city }}, {{ record.venue.venue_postcode }}</a>
+</p>
+    <p>Date: {{ record.gig_date_time|date("l jS F Y") }}</p>
+    <p>Time: {{ record.gig_date_time|date("h-i A") }}</p>
+    <p>Price: &#163;{{ record.price }}</p>
+    <p>Reduced Price: &#163;{{ record.reduced_price }}</p>
+
+{% else %}
+    {{ notFoundMessage }}
+{% endif %}
